@@ -15,30 +15,36 @@ class StudentsController extends Controller
             'email' => $request->get('email')
         ];
         $student = Student::create($record);
+        return response()->json($student);
+    }
+
+    public function getStudents()
+    {
         $students = Student::all();
         return response()->json($students);
     }
 
-    public function getStudents(){
-        $students = Student::all();
-        return response()->json($students);
-    }
-
-    public function updateStudent(Request $request) {    
+    public function updateStudent(Request $request)
+    {
         $record = [
-            'name'=>$request->get('name'),
-            'address'=>$request->get('address'),
-             'email'=>$request->get('email')
+            'name' => $request->get('name'),
+            'address' => $request->get('address'),
+            'email' => $request->get('email')
         ];
-        
-        $id = request()->route()->parameter('id'); 
-        $student = Student::where('id','=', $id)->update($record);       
-        return response()->json($student);          
+
+        $id = request()->route()->parameter('id');
+        $student = Student::where('id', '=', $id)->update($record);
+        return response()->json($student);
     }
 
-    public function deleteStudent() {
+    public function deleteStudent()
+    {
         $id = request()->route()->parameter('id');
         $student = Student::find($id)->delete();
-        return response()->json($student); 
+        return response()->json($student);
     }
+
+    // public function addResult() {
+    //     $student = 
+    // }
 }

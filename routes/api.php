@@ -9,3 +9,4 @@ use Illuminate\Support\Facades\Route;
  Route::get('/get-all-students',[StudentsController::class,'getStudents']);
  Route::post('/update-student/{id}',[StudentsController::class,'updateStudent']);
  Route::post('/delete-student/{id}',[StudentsController::class,'deleteStudent']);
+ Route::post('/add-results',[StudentsController::class,'addResult']);
