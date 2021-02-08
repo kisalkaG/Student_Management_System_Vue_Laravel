@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('/save-student-fee',[StudentFeeController::class,'addFee']);
 Route::get('/student-data',[StudentsController::class,'studentData']);
 Route::get('/get-all-student-fees',[StudentFeeController::class,'getStudentFees']);
+Route::post('/update-student-fee/{id}',[StudentFeeController::class,'updateStudentFees']);
+Route::post('/delete-record/{id}',[StudentFeeController::class,'deleteStudentFee']);

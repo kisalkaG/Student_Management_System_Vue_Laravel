@@ -113,7 +113,7 @@
                             class="btn btn-primary"
                             @click.prevent="saveRecord()"
                         >
-                            {{("Submit")}}
+                            {{ "Submit" }}
                         </button>
 
                         <button
@@ -121,7 +121,7 @@
                             class="btn btn-danger"
                             @click.prevent="closeModal()"
                         >
-                            {{("Close")}}
+                            {{ "Close" }}
                         </button>
                     </div>
                 </div>
@@ -139,7 +139,8 @@ export default {
             studentId: null,
             studentData: [],
             studentsFees: [],
-            isNew: true
+            isNew: true,
+            editRecordId: null
         };
     },
 
@@ -149,12 +150,14 @@ export default {
     },
 
     methods: {
-        openModal(studentFee, isNew) {
+        openModal(studentFee, isNewRecord) {
             (this.isNew = true),
-                (this.studentId = ""),
+                (this.studentId = null),
                 (this.month = ""),
                 (this.studentFee = "");
-            if (studentFee != null && isNew == false) {
+            this.editRecordId = null;
+            if (studentFee != null && isNewRecord == false) {
+                this.editRecordId = studentFee.id;
                 (this.studentId = studentFee.student_id),
                     (this.month = studentFee.month),
                     (this.studentFee = studentFee.fees),
@@ -169,16 +172,19 @@ export default {
 
         saveRecord() {
             let url = "";
+
             if (this.isNew == true) {
                 url = "/save-student-fee";
             } else {
-                url = "/update-student-fee";
+                url = "/update-student-fee/" + this.editRecordId;
             }
+
             let student = {
-                id: this.studentId,
+                student_id: this.studentId,
                 month: this.month,
                 fee: this.studentFee
             };
+
             axios.post(url, student).then(response => {
                 if (response.data) {
                     this.$swal({
@@ -210,7 +216,35 @@ export default {
             });
         },
 
-        deleteRecord() {}
+        deleteRecord(id) {
+            this.$swal({
+                title: "Are sure you?",
+                text: "This won't be revert!!!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Ok"
+            }).then(result => {
+                if (result.isConfirmed) {
+                    axios.post("/delete-record/" + id).then(response => {
+                        if (response.data) {
+                            this.$swal({
+                                title: "Success",
+                                text: "Record deleted successfully !!!",
+                                icon: "success",
+                                showCancelButton: false,
+                                confirmButtonColor: "#3085d6",
+                                confirmButtonText: "Ok"
+                            }).then(result => {
+                                if (result.isConfirmed) {
+                                    this.getAllStudentFees();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
     }
 };
 </script>
