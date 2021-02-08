@@ -44,6 +44,12 @@ class StudentsController extends Controller
         return response()->json($student);
     }
 
+    public function studentData()
+    {
+        $students = Student::select('id','name')->get();
+        return response()->json($students);
+    }
+
     // public function addResult() {
     //     $student = 
     // }

@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import Dashboard from "./components/Dashboard"
 import StudentRegistrationForm from "./components/StudentRegistrationForm"
 import StudentInformation from "./components/StudentInformation"
+import StudentFee from "./components/StudentFee"
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,12 @@ const routes = [
         path: "/student-information",
         name: "StudentInformation",
         component:StudentInformation
+    },
+
+    {
+        path: "/student-fee",
+        name: "StudentFee",
+        component:StudentFee
     }
     
 ];

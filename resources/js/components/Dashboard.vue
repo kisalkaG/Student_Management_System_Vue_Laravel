@@ -42,6 +42,19 @@
             </router-link>
           </div>
         </div>
+
+        <div class="col-sm-5 dashboard_icon space1">
+          <img class="image mx-auto d-block" src="images/results.png" />
+          {{ "Student Fees" }}
+          <div>
+            <router-link
+              to="/student-fee"
+              type="button"
+              class="btn btn-outline-dark btn-lg text-center"
+              >{{ "Fee" }}
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
   </div>
