@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\StudentFeeController;
+use App\Http\Controllers\StudentResultController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,9 @@ Route::get('/student-data',[StudentsController::class,'studentData']);
 Route::get('/get-all-student-fees',[StudentFeeController::class,'getStudentFees']);
 Route::post('/update-student-fee/{id}',[StudentFeeController::class,'updateStudentFees']);
 Route::post('/delete-record/{id}',[StudentFeeController::class,'deleteStudentFee']);
+
+//Student Results APIs
+Route::post("/save-student-result",[StudentResultController::class,'addResult']);
+Route::get("/get-all-results",[StudentResultController::class,'getresults']);
+Route::post("/update-result/{id}",[StudentResultController::class,'updateresult']);
+Route::post("/delete-result/{id}",[StudentResultController::class,'deleteresult']);

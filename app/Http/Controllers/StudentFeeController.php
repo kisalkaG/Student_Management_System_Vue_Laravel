@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\StudentFees;
+use App\StudentFee;
 use Illuminate\Http\Request;
 
 class StudentFeeController extends Controller
@@ -14,12 +14,12 @@ class StudentFeeController extends Controller
             'fees' => $request->get('fee')
         ];
         
-        $studentFee = StudentFees::create($record);          
+        $studentFee = StudentFee::create($record);          
         return response()->json($studentFee);
     }
 
     public function getStudentFees() {
-        $studentFee = StudentFees::all();
+        $studentFee = StudentFee::all();
         return response()->json($studentFee);
     }
 
@@ -31,13 +31,13 @@ class StudentFeeController extends Controller
         ];
 
         $id = request()->route()->parameter('id');       
-        $student = StudentFees::where('id', '=', $id)->update($record);
+        $student = StudentFee::where('id', '=', $id)->update($record);
         return response()->json($student);
     }
 
     public function deleteStudentFee() {
         $id = request()->route()->parameter('id'); 
-        $student = StudentFees::find($id)->delete();
+        $student = StudentFee::find($id)->delete();
         return response()->json($student);
     }
 }

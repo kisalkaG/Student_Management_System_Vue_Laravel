@@ -83,7 +83,7 @@
                                     v-model="month"
                                 />
                             </div>
-
+                             
                             <div class="form-group">
                                 <label for="id">{{ "Student" }}</label>
                                 <select
@@ -151,17 +151,17 @@ export default {
 
     methods: {
         openModal(studentFee, isNewRecord) {
-            (this.isNew = true),
-                (this.studentId = null),
-                (this.month = ""),
-                (this.studentFee = "");
-            this.editRecordId = null;
+                 this.isNew = true,
+                 this.studentId = null,
+                 this.month = "",
+                 this.studentFee = "";
+                 this.editRecordId = null;
             if (studentFee != null && isNewRecord == false) {
                 this.editRecordId = studentFee.id;
-                (this.studentId = studentFee.student_id),
-                    (this.month = studentFee.month),
-                    (this.studentFee = studentFee.fees),
-                    (this.isNew = false);
+                this.studentId = studentFee.student_id,
+                this.month = studentFee.month,
+                this.studentFee = studentFee.fees,
+                this.isNew = false;
             }
             $("#myModal").modal("show");
         },
@@ -172,11 +172,14 @@ export default {
 
         saveRecord() {
             let url = "";
+            let text = "";
 
             if (this.isNew == true) {
                 url = "/save-student-fee";
+                text = "Student Fee created successfully!!!";
             } else {
                 url = "/update-student-fee/" + this.editRecordId;
+                text = "Student Fee updated successfully!!!";
             }
 
             let student = {
@@ -189,7 +192,7 @@ export default {
                 if (response.data) {
                     this.$swal({
                         title: "Succeed",
-                        text: "Student Fee updated successfully",
+                        text: text,
                         icon: "success",
                         showCancelButton: false,
                         confirmButtonColor: "#3085d6",
@@ -219,7 +222,7 @@ export default {
         deleteRecord(id) {
             this.$swal({
                 title: "Are sure you?",
-                text: "This won't be revert!!!",
+                text: "This won't be revert",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -230,7 +233,7 @@ export default {
                         if (response.data) {
                             this.$swal({
                                 title: "Success",
-                                text: "Record deleted successfully !!!",
+                                text: "Record deleted successfully!!!",
                                 icon: "success",
                                 showCancelButton: false,
                                 confirmButtonColor: "#3085d6",

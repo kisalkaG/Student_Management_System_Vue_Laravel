@@ -35,7 +35,7 @@
           {{ "Student Results" }}
           <div>
             <router-link
-              to="/student-information"
+              to="/student-results"
               type="button"
               class="btn btn-outline-dark btn-lg text-center"
               >{{ "Results" }}
@@ -101,4 +101,5 @@
   margin-left: 40px;
   margin-bottom: 30px;
 }
+
 </style>

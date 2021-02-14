@@ -125,7 +125,7 @@
                         </button>
                         <button
                             type="submit"
-                            v-else
+                            v-else                            
                             class="btn btn-primary"
                             @click.prevent="updateRecord()"
                         >

@@ -21,6 +21,7 @@ class StudentsController extends Controller
     public function getStudents()
     {
         $students = Student::all();
+        // dd($students);
         return response()->json($students);
     }
 

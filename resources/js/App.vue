@@ -10,8 +10,8 @@ export default {
 
 
     mounted() {
-        if(this.$route.name == "dashboard") {
-        this.$router.push({
+        if(this.$route.path == "/dashboard" || this.$route.path == "/") {
+        this.$router.push({ 
         path: "/dashboard",
         }).catch(()=>{});
         }
