@@ -1,25 +1,34 @@
 <template>
     <div class="container box">
-        <h1>{{ "Student Information" }}</h1>
+        <h1>{{("Student Information") }}</h1>
 
         <div>
             <router-link
                 to="/register-form"
                 type="button"
                 class="btn btn-outline-primary btn-lg text-center"
-                >{{ "Create New Student" }}
+                >{{ ("Create New Student") }}
             </router-link>
         </div>
+        <!-- <pre v-if="students.length > 0">{{students[0].student_result == null ? "-" : students[0].student_result.final_result}}</pre>
+        <pre v-if="students.length > 0">{{students[1].student_result == null ? "-" : students[1].student_result.final_result}}</pre>
+        <pre v-if="students.length > 0">{{students[2].student_result == null ? "-" : students[2].student_result.final_result}}</pre>
+        <pre v-if="students.length > 0">{{students[3].student_result == null ? "-" : students[3].student_result.final_result}}</pre> -->
+
+        <!-- <pre v-if="students.length > 0">{{students[0].student_fee == null ? "-" : students[0].student_fee.fees}}</pre> -->
 
         <table class="table table-dark">
             <thead>
                 <tr>
-                    <th>{{ "id" }}</th>
-                    <th>{{ "Name" }}</th>
-                    <th>{{ "Addres" }}</th>
-                    <th>{{ "Email" }}</th>
-                    <th>{{ "Edit" }}</th>
-                    <th>{{ "Delete" }}</th>
+                    <th>{{( "id" )}}</th>
+                    <th>{{( "Name") }}</th>
+                    <th>{{ ("Addres") }}</th>
+                    <th>{{ ("Email") }}</th>
+                    <th>{{("Final Result")}}</th>
+                     <th>{{("Month")}}</th>
+                    <th>{{("Fee")}}</th>
+                    <th>{{ ("Edit") }}</th>
+                    <th>{{ ("Delete") }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,13 +37,16 @@
                     <td>{{ student.name }}</td>
                     <td>{{ student.address }}</td>
                     <td>{{ student.email }}</td>
+                    <td>{{student.student_result == null ? "-" : student.student_result.final_result == 1 ? "pass" : "fail"}}</td>
+                    <td>{{student.student_fee == null ? "-" : student.student_fee.month}}</td>
+                    <td>{{student.student_fee == null ? "-" : "Rs." + student.student_fee.fees}}</td>
                     <td>
                         <button
                             type="button"
                             @click.prevent="openModal(student)"
                             class="btn btn-primary"
                         >
-                            {{ "Edit" }}
+                            {{ ("Edit") }}
                         </button>
                     </td>
                     <td>
@@ -43,7 +55,7 @@
                             class="btn btn-danger"
                             @click.prevent="deleteRecord(student.id)"
                         >
-                            {{ "Delete" }}
+                            {{ ("Delete") }}
                         </button>
                     </td>
                 </tr>
@@ -54,7 +66,7 @@
                 to="/dashboard"
                 type="button"
                 class="btn btn-dark text-right"
-                >{{ "Back" }}
+                >{{ ("Back") }}
             </router-link>
         </div>
 
@@ -77,7 +89,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="name">{{ "Name" }}</label>
+                                <label for="name">{{ ("Name") }}</label>
                                 <input
                                     type="text"
                                     class="form-control"
@@ -88,7 +100,7 @@
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="address">{{ "Address" }}</label>
+                                <label for="address">{{ ("Address") }}</label>
                                 <input
                                     type="text"
                                     class="form-control"
@@ -99,7 +111,7 @@
                                 />
                             </div>
                             <div class="form-group">
-                                <label for="email">{{ "Email" }}</label>
+                                <label for="email">{{ ("Email") }}</label>
                                 <input
                                     type="text"
                                     class="form-control"
@@ -121,7 +133,7 @@
                             data-dismiss="modal"
                             @click.prevent="saveRecord()"
                         >
-                            {{ "Submit" }}
+                            {{ ("Submit") }}
                         </button>
                         <button
                             type="submit"
@@ -129,7 +141,7 @@
                             class="btn btn-primary"
                             @click.prevent="updateRecord()"
                         >
-                            {{ "Update" }}
+                            {{ ("Update") }}
                         </button>
 
                         <button
@@ -137,7 +149,7 @@
                             class="btn btn-danger"
                             @click.prevent="closeModal()"
                         >
-                            Close
+                            {{("Close")}}
                         </button>
                     </div>
                 </div>

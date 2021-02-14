@@ -8,10 +8,10 @@ class Student extends Model
 {
     protected $table = 'students';
     protected $fillable = ['name','address','email'];
-    protected $with = ['studentResult'];
+    protected $with = ['studentResult' , 'studentFee'];    
 
     public function studentFee() {
-        return $this->hasOne('App\StudentFees','student_id','id');
+        return $this->hasOne('App\StudentFee','student_id','id');
          
     }
 
