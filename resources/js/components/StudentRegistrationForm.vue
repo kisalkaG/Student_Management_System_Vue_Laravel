@@ -72,7 +72,7 @@ export default {
                 address: this.studentAddress,
                 email: this.studentEmail
             };
-            axios.post("create-student", student).then(res => {
+            axios.post("create-student", student).then(response => {                
                 if (response.data) {
                     this.$swal({
                         title: "Succeed",
